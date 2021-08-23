@@ -75,6 +75,7 @@ function batalhaPokemon(id1, id2){
 }
 
 function curaPokemon(id){
+<<<<<<< HEAD
     
     const pokemon1 = pokemons[id]
     const pocaoCura = 20
@@ -84,6 +85,13 @@ function curaPokemon(id){
     if(pokemon1.hp > 100) pokemon1.hp = 100
 
     return `${pokemon1.nome}: ${pokemon1.hp}`
+=======
+    pokemon[id].hp = pokemon[id] + 20
+
+    if(pokemon[id].hp > 100) pokemon[id].hp = 100
+
+    return `${pokemon[id].nome}: ${pokemon[id].hp}`
+>>>>>>> 41731bda99d6f4fe2f2621e445641d522887f878
 }
 
 module.exports = { salvarPokemons, mostrarPokemon, mostrarPokemons, atualizarPokemon, deletarPokemon, batalhaPokemon, curaPokemon }
