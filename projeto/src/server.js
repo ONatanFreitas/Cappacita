@@ -44,11 +44,7 @@ app.post('/batalha', (req, res) =>{
     res.send(dataBase.batalhaPokemon(req.body.id1, req.body.id2))
 })
 
-<<<<<<< HEAD
 app.put('/cura/:id', (req, res) => {
-=======
-app.get('/pokemons/:id', (req, res) => {
->>>>>>> 41731bda99d6f4fe2f2621e445641d522887f878
     res.send(dataBase.curaPokemon(req.params.id))
 })
 
