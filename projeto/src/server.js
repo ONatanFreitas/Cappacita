@@ -1,37 +1,39 @@
 const express = require('express')
 const app = express()
-const dataBase = require('./dataBase.js')
+const dataBase = require('./database/dataBaseKnex')
 const bodyParser = require('body-parser')
 
 app.use(bodyParser.urlencoded({ extended: true}))
 
-app.get('/pokemons', (req, res) => {
-    res.send(dataBase.mostrarPokemons())
+app.get('/pokemons', async (req, res) => {
+    const pokemons = await dataBase.mostrarPokemons()
+    res.send(pokemons)
 })
 
-app.get('/pokemons/:id', (req, res) => {
-    res.send(dataBase.mostrarPokemon(req.params.id))
+app.get('/pokemons/:id', async (req, res) => {
+    res.send(await dataBase.mostrarPokemon(req.params.id))
 })
 
-app.post('/pokemons', (req, res) => {
-    const pokemon = dataBase.salvarPokemons({
+app.post('/pokemons', async (req, res) => {
+    const pokemon = await dataBase.salvarPokemons({
         nome: req.body.nome,
         tipo: req.body.tipo,
         fraqueza: req.body.fraqueza,
         resistencia: req.body.resistencia,
-        hp: 100
+        geracao: req.body.geracao,
+        origem: req.body.origem,        
     })
     res.send(pokemon)
 })
 
-app.put('/pokemons/:id', (req, res) => {
-    const pokemon = dataBase.atualizarPokemon(req.params.id, {
+app.put('/pokemons/:id', async (req, res) => {
+    const pokemon = await dataBase.atualizarPokemon(req.params.id, {
         nome: req.body.nome,
         tipo: req.body.tipo,
         fraqueza: req.body.fraqueza,
         resistencia: req.body.resistencia,
-        hp: 100,
-        id: parseInt(req.params.id)
+        geracao: req.body.geracao,
+        origem: req.body.origem,            
     })
     res.send(pokemon)
 })
